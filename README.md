@@ -34,5 +34,8 @@ if that doesn't work, refer to this [thread](https://stackoverflow.com/questions
  
 
 5. My classmate created another interface with the *wrong* bundle id, so we had to change that, his interface was well developed but had spaghetti 🍝 code.
+6. Created sign in provider with only email and password
+ ![image](https://user-images.githubusercontent.com/66978846/166156938-deebb04b-2181-40d8-825d-0aacc7eeb0ab.png)
+
 
 
