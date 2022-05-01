@@ -13,7 +13,7 @@ Go back to your terminal and enter:
 
 `xcode-select --install`
 
-and a sfotware is going to be installed, once that is done, your git should be ready to run.
+and a software is going to be installed, once that is done, your git should be ready to run.
 
 if that doesn't work, refer to this [thread](https://stackoverflow.com/questions/52522565/git-is-not-working-after-macos-update-xcrun-error-invalid-active-developer-pa)
 
