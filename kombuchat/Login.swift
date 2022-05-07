@@ -71,7 +71,7 @@ struct Login: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Button{
-                        // Sign in button needs to be made
+                        handleAction()
                     }label: {
                       Text("Sign in")
                             .bold()
@@ -80,22 +80,43 @@ struct Login: View {
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                                     .fill(.linearGradient(colors: [.indigo], startPoint: .top, endPoint: .bottomTrailing)))
                             .foregroundColor(.white)
-                            .padding(20)
+//                            .padding(20)
                     }
-                  
-                    .offset(y: 10)
-                    
-                   
-                    
-                    
-                    .padding(.top)
-                    .offset(y: 50)
+                    Text(self.loginStatusMessage)
+                        .foregroundColor(.red)
+//                    .offset(y: 10)
+//                    
+//                   
+//                    
+//                    
+//                    .padding(.top)
+//                    .offset(y: 50)
             }
                 .frame(width: 350)
                 
             }
             .ignoresSafeArea()
         }
+    private func handleAction  (){
+        loginUser()
+    }
+    //in case it cannot create account
+    @State var loginStatusMessage = ""
+    
+    func loginUser(){
+        Auth.auth().signIn(withEmail: email, password: password) {
+            result, err in
+            if let err = err {
+                print("Failed to login user:", err)
+                self.loginStatusMessage = "Failed to login account \(err)"
+                return
+            }
+            print("Successfully logged in user: \(result?.user.uid ?? "")")
+            
+            self.loginStatusMessage = "Successfully logged in user: \(result?.user.uid ?? "")"
+            
+        }
+    }
 }
 
 struct Login_Previews: PreviewProvider {

@@ -78,12 +78,15 @@ struct SignUp: View {
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                                     .fill(.linearGradient(colors: [.indigo], startPoint: .top, endPoint: .bottomTrailing)))
                             .foregroundColor(.white)
-                            .padding(20)
+//                            .padding(20)
                     }
+                    
+                    Text(self.loginStatusMessage)
+                        .foregroundColor(.red)
                   
-                    .offset(y: 10)
-                    .padding(.top)
-                    .offset(y: 50)
+//                    .offset(y: 10)
+//                    .padding(.top)
+//                    .offset(y: 50)
                     
                     // create user .unfinished
                    
@@ -102,14 +105,20 @@ struct SignUp: View {
     private func handleAction  (){
         createNewAccount()
     }
+    //in case it cannot create account
+    @State var loginStatusMessage = ""
+    
     func createNewAccount(){
         Auth.auth().createUser(withEmail: email, password: password){
             result, err in
             if let err = err {
                 print("Failed to create user:", err)
+                self.loginStatusMessage = "Failed to create account \(err)"
                 return
             }
             print("Successfully created user: \(result?.user.uid ?? "")")
+            
+            self.loginStatusMessage = "Successfully created user: \(result?.user.uid ?? "")"
         }
     }
     
