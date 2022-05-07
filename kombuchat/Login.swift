@@ -80,15 +80,12 @@ struct Login: View {
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                                     .fill(.linearGradient(colors: [.indigo], startPoint: .top, endPoint: .bottomTrailing)))
                             .foregroundColor(.white)
-//                            .padding(20)
+                            //.padding(20)
                     }
-                    Text(self.loginStatusMessage)
-                        .foregroundColor(.red)
+                    Text(self.loginMessage)
+                    // succesful log in with show the User UID
+                        .foregroundColor(.white)
 //                    .offset(y: 10)
-//                    
-//                   
-//                    
-//                    
 //                    .padding(.top)
 //                    .offset(y: 50)
             }
@@ -97,23 +94,23 @@ struct Login: View {
             }
             .ignoresSafeArea()
         }
-    private func handleAction  (){
+    private func handleAction(){
         loginUser()
     }
     //in case it cannot create account
-    @State var loginStatusMessage = ""
+    @State var loginMessage = ""
     
     func loginUser(){
-        Auth.auth().signIn(withEmail: email, password: password) {
+        firebaseManager.shared.auth.signIn(withEmail: email, password: password) {
             result, err in
             if let err = err {
                 print("Failed to login user:", err)
-                self.loginStatusMessage = "Failed to login account \(err)"
+                self.loginMessage = "Failed to login account \(err)"
                 return
             }
             print("Successfully logged in user: \(result?.user.uid ?? "")")
             
-            self.loginStatusMessage = "Successfully logged in user: \(result?.user.uid ?? "")"
+            self.loginMessage = "Successfully logged in user: \(result?.user.uid ?? "")"
             
         }
     }

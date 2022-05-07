@@ -11,9 +11,6 @@ import Firebase
 @main
 struct KombuChat: App {
     
-    init(){
-        FirebaseApp.configure()
-    }
     
     var body: some Scene {
         WindowGroup {

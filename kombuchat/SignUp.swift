@@ -8,10 +8,14 @@
 import SwiftUI
 import Firebase
 
+
+
 struct SignUp: View {
     @State private var email = ""
     @State private var password = ""
     @State var userIsLoggedIn = true
+    
+
     var body: some View {
         
         //  i like the color, we can still change it if you want to
@@ -81,14 +85,14 @@ struct SignUp: View {
 //                            .padding(20)
                     }
                     
-                    Text(self.loginStatusMessage)
-                        .foregroundColor(.red)
-                  
+                    Text(self.loginMessage)
+                    // if the account is created succesfully it will show the User UID
+                        .foregroundColor(.white)
 //                    .offset(y: 10)
 //                    .padding(.top)
 //                    .offset(y: 50)
                     
-                    // create user .unfinished
+                    // create user .unfinished!!
                    
                   
             }
@@ -106,19 +110,21 @@ struct SignUp: View {
         createNewAccount()
     }
     //in case it cannot create account
-    @State var loginStatusMessage = ""
+    @State var loginMessage = ""
     
+    
+    // still needs to catch the sign in error
     func createNewAccount(){
-        Auth.auth().createUser(withEmail: email, password: password){
+        firebaseManager.shared.auth.createUser(withEmail: email, password: password){
             result, err in
             if let err = err {
                 print("Failed to create user:", err)
-                self.loginStatusMessage = "Failed to create account \(err)"
+                self.loginMessage = "Failed to create account \(err)"
                 return
             }
             print("Successfully created user: \(result?.user.uid ?? "")")
             
-            self.loginStatusMessage = "Successfully created user: \(result?.user.uid ?? "")"
+            self.loginMessage = "Successfully created user: \(result?.user.uid ?? "")"
         }
     }
     

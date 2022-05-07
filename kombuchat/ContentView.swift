@@ -9,8 +9,21 @@ import SwiftUI
 import Firebase
 import SceneKit
 
-
-
+//fixing preview crash
+class firebaseManager: NSObject{
+    let auth: Auth
+    
+    static let shared = firebaseManager() //singleton object
+    
+    override init() {
+        FirebaseApp.configure()
+        
+        
+        self.auth = Auth.auth()
+        
+        super.init()
+    }
+}
 struct ContentView: View {
     @State private var username = ""
     @State private var password = ""
@@ -48,25 +61,6 @@ struct ContentView: View {
         }
         .ignoresSafeArea()
     }
-
-//
-//    func signUp(){
-//    Auth.auth().createUser(withEmail: username, password: password) {
-//            result, error in
-//            if error != nil {
-//                print(error!.localizedDescription)
-//            }
-//        }
-//    }
-//
-//    func singIn(){
-//        Auth.auth().signIn(withEmail: username, password: password) {
-//            result, error in
-//            if error != nil{
-//                print(error!.localizedDescription)
-//            }
-//        }
-//    }
     
     
 }
