@@ -22,8 +22,6 @@ struct SignUp: View {
             ZStack{
                 Color.gray
                 
-                
-                
                 RoundedRectangle(cornerRadius: 30, style: .continuous)
                     .foregroundStyle(.linearGradient(colors: [.red, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .frame(width: 1000, height: 1000)
@@ -40,7 +38,6 @@ struct SignUp: View {
                         .foregroundColor(.white)
                         .font(.system(size: 40, weight: .bold, design: .rounded))
                         .offset(x: -105, y: -50)
-                    
                  
                     TextField("Choose a Email", text: $email) //use $ for wrapping the string
                         .foregroundColor(.white)
@@ -64,14 +61,10 @@ struct SignUp: View {
                     }
                     .padding(.top,20)
            
-           
-               
-                    
                 Rectangle()
                     .frame(width: 350, height: 1)
                     .foregroundColor(.white)
                 
-                    
                     Button{
                         handleAction()
                     }label: {
@@ -84,7 +77,6 @@ struct SignUp: View {
                             .foregroundColor(.white)
 //                            .padding(20)
                     }
-                    
                     Text(self.loginMessage)
                     // if the account is created succesfully it will show the User UID
                         .foregroundColor(.white)
@@ -93,14 +85,8 @@ struct SignUp: View {
 //                    .offset(y: 50)
                     
                     // create user .unfinished!!
-                   
-                  
             }
-                
                 .frame(width: 350)
-                
-                
-               
             }
             .ignoresSafeArea()
         
@@ -111,7 +97,6 @@ struct SignUp: View {
     }
     //in case it cannot create account
     @State var loginMessage = ""
-    
     
     // still needs to catch the sign in error
     func createNewAccount(){
@@ -127,7 +112,6 @@ struct SignUp: View {
             self.loginMessage = "Successfully created user: \(result?.user.uid ?? "")"
         }
     }
-    
 }
 
 struct SignUp_Previews: PreviewProvider {

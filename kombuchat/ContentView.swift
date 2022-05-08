@@ -9,17 +9,21 @@ import SwiftUI
 import Firebase
 import SceneKit
 
+
 //fixing preview crash
 class firebaseManager: NSObject{
     let auth: Auth
-    
+//    let storage: Storage
+//    let firestore: Firestore
+//
     static let shared = firebaseManager() //singleton object
     
     override init() {
         FirebaseApp.configure()
         
-        
+//        self.storage = Storage.storage()
         self.auth = Auth.auth()
+//        self.firestore = Firestore.firestore()
         
         super.init()
     }
@@ -39,7 +43,6 @@ struct ContentView: View {
             } else {
                 SignUp()
             }
-            //donny has to pick one init
         
             HStack{
                 Text(userIsLoggedIn ? "New Member?" : "Already a memeber?")
@@ -53,7 +56,6 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.blue)
             })
-                
             }
             .offset(y: 300)
             .padding(.top)
@@ -61,9 +63,16 @@ struct ContentView: View {
         }
         .ignoresSafeArea()
     }
-    
-    
 }
+//private func storeUserInformation(profileUrl: URL){
+//    guard let uid = firebaseManager.shared.auth.currentUser?.uid else {
+//        return
+//    }
+//    let userData = ["email": self.email, "uid": uid, ]
+//    firebaseManager.shared.firestore.collection("users")
+//        .document(uid).setData(<#T##documentData: [String : Any]##[String : Any]#>, completion:
+//            ((Error?) -> Void)?)
+//}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

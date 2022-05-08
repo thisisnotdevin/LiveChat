@@ -56,8 +56,6 @@ struct Login: View {
                     }
                     .padding(.top,20)
                     
-               
-                    
                 Rectangle()
                     .frame(width: 350, height: 1)
                     .foregroundColor(.white)
@@ -90,7 +88,6 @@ struct Login: View {
 //                    .offset(y: 50)
             }
                 .frame(width: 350)
-                
             }
             .ignoresSafeArea()
         }
